@@ -23,12 +23,12 @@ namespace Fitness.BL.Controller
         /// </summary>
         /// <param name="user"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public UserController(string userName, string genderName,DateTime birthDay, double weight, double height)
+        public UserController(string userName, string genderName, DateTime birthDay, double weight, double height)
         {
             //TODO сделать проверку
             var gender = new Gender(userName);
-            User = new User(userName, gender,birthDay,weight,height);
-            
+            User = new User(userName, gender, birthDay, weight, height);
+
         }
         /// <summary>
         /// Сохранить данные пользователя.
@@ -50,9 +50,9 @@ namespace Fitness.BL.Controller
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                if(formatter.Deserialize(fs) is User user)
-                { 
-                    User = user; 
+                if (formatter.Deserialize(fs) is User user)
+                {
+                    User = user;
                 }
                 //TODO:что делать, если пользователя не прочитали
             }
@@ -71,9 +71,5 @@ namespace Fitness.BL.Controller
         //        //TODO:что делать, если пользователя не прочитали
         //    }
         //}
-
-
-
-        nfcownvlwnev;pwepwneowcwobvowenvcwe
     }
 }
