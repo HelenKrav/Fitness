@@ -71,5 +71,9 @@ namespace Fitness.BL.Controller
         //        //TODO:что делать, если пользователя не прочитали
         //    }
         //}
+
+
+
+        nfcownvlwnev;pwepwneowcwobvowenvcwe
     }
 }
