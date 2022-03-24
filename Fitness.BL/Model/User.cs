@@ -9,6 +9,7 @@ namespace Fitness.BL.Model
     /// <summary>
     /// Пользователь.
     /// </summary>
+    [Serializable]
     public class User
     {
         #region Свойства
@@ -33,6 +34,7 @@ namespace Fitness.BL.Model
         /// </summary>
         public double Height { get; set; }
         #endregion
+        
         /// <summary>
         /// Создать нового пользователя
         /// </summary>
