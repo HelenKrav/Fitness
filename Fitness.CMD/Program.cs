@@ -1,4 +1,5 @@
 ﻿using Fitness.BL.Controller;
+using Fitness.BL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace Fitness.CMD
             Console.WriteLine("Вас приветствует приложение Fitness");
            
             Console.WriteLine("Введите имя пользователя");
-            var name = Console.ReadLine();  //TODO сделать проверку
+            var name = Console.ReadLine(); 
 
             var UserController = new UserController(name);
+            var eatincontroller = new EatingContoller(UserController.CurrentUser);
+
             if (UserController.IsNewUser)
             {
                 Console.WriteLine("Ведите пол ");
@@ -26,26 +29,44 @@ namespace Fitness.CMD
                 var weight = ParseDouble("вес");
                 var height = ParseDouble("рост");
 
-
                 UserController.SetNewUserData(gender, birthDay, weight, height);
             }
+
             Console.WriteLine(UserController.CurrentUser);
+
+            Console.WriteLine("Что вы хотите сделать?");
+            Console.WriteLine("Е - вести прием пищи");
+            var key = Console.ReadKey();
+            if (key.Key == ConsoleKey.E) 
+            {
+              var foods = EnterEating();
+              eatincontroller.Add(foods.Food, foods.Weight);
+              
+            }
+            foreach(var item in eatincontroller.Eating.Foods)
+            {
+                Console.WriteLine($"\t {item.Key.NameFood} - {item.Value}");
+            }
             Console.ReadLine();
-            
-            
-            
-            //Console.WriteLine("Введите пол пользователя");
-            //var gender = Console.ReadLine();  //TODO сделать проверку
+        }
 
-            //Console.WriteLine("Введите дату рождения пользователя");
-            //DateTime birthDay =DateTime.Parse( Console.ReadLine());  //TODO сделать проверку
 
-            //Console.WriteLine("Введите вес пользователя");
-            //double weight = double.Parse( Console.ReadLine());  //TODO сделать проверку
 
-            //Console.WriteLine("Введите рост пользователя");
-            //double height =double.Parse(Console.ReadLine());  //TODO сделать проверку
 
+        private static (Food Food , double Weight) EnterEating()  // немножко кортежей
+        {
+            Console.WriteLine("Введите имя продукта: ");
+            var food = Console.ReadLine();
+
+            var calories = ParseDouble("калорийность");
+            var proteins = ParseDouble("белки");
+            var fats = ParseDouble("жиры");
+            var carbs = ParseDouble("углеводы");
+            var weight = ParseDouble("вес порции");
+
+            var product = new Food(food,calories,proteins,fats,carbs);
+
+            return (Food: product,Weight: weight);
 
         }
 
@@ -64,9 +85,9 @@ namespace Fitness.CMD
                     Console.WriteLine("Неверный формат даты рождения!");
                 }
             }
-
             return birthDay;
         }
+
 
         private static double ParseDouble(string name)  //попробовать расширить потом на большее количество вводных данных
         {
@@ -79,7 +100,7 @@ namespace Fitness.CMD
                 }
                 else
                 {
-                    Console.WriteLine($"Неверный формат {name}!");
+                    Console.WriteLine($"Неверный формат поля {name}!");
                 }
             }
             

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+    // TODO доделать тесты для неправильных, критических значений
+
 namespace Fitness.BL.Controller.Tests   //делаем проект тестов с помощью VS  и нужного нам класса . Создаются заглушки для все публичных методов класса
 {
     [TestClass()]
