@@ -2,7 +2,9 @@
 using Fitness.BL.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,11 +12,16 @@ namespace Fitness.CMD
 {
     internal class Program
     {
-        static void Main(string[] args)
+        
+         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение Fitness");
-           
-            Console.WriteLine("Введите имя пользователя");
+            var culture = CultureInfo.CreateSpecificCulture("ru-ru");   //делаем языковую настройку 
+            var resourceManager = new ResourceManager("Fitness.CMD.Languages.Messages", typeof(Program).Assembly);
+
+
+            Console.WriteLine(resourceManager.GetString("Hello",culture));  //Вас приветствует приложение Fitness
+
+            Console.WriteLine(resourceManager.GetString("EnterName",culture)); //Введите имя пользователя
             var name = Console.ReadLine(); 
 
             var UserController = new UserController(name);
@@ -22,7 +29,7 @@ namespace Fitness.CMD
 
             if (UserController.IsNewUser)
             {
-                Console.WriteLine("Ведите пол ");
+                Console.WriteLine("EnterGender", culture); // Ведите пол
                 var gender = Console.ReadLine();
 
                 var birthDay = ParseBirthDay();
@@ -34,8 +41,8 @@ namespace Fitness.CMD
 
             Console.WriteLine(UserController.CurrentUser);
 
-            Console.WriteLine("Что вы хотите сделать?");
-            Console.WriteLine("Е - вести прием пищи");
+            Console.WriteLine(resourceManager.GetString("QuestionWhatDoYouDo", culture)); //"Что вы хотите сделать?"  
+            Console.WriteLine(resourceManager.GetString("LetterE", culture)); //"Е - вести прием пищи"
             var key = Console.ReadKey();
             if (key.Key == ConsoleKey.E) 
             {
@@ -75,7 +82,7 @@ namespace Fitness.CMD
             DateTime birthDay;
             while (true)
             {
-                Console.WriteLine("Ведите дату рождения dd.mm.yyyy ");
+                Console.WriteLine("Ведите дату рождения dd.mm.yyyy ");  
                 if (DateTime.TryParse(Console.ReadLine(), out birthDay))
                 {
                     break;
