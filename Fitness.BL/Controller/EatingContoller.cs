@@ -41,8 +41,8 @@ namespace Fitness.BL.Controller
         /// <summary>
         /// Добавление продукта.
         /// </summary>
-        /// <param name="food"> продукт. </param>
-        /// <param name="weight"> вес. </param>
+        /// <param name="food"> Продукт. </param>
+        /// <param name="weight"> Вес. </param>
         public void Add(Food food , double weight)
         {
             var product = Foods.SingleOrDefault(f => f.NameFood == food.NameFood);
@@ -65,11 +65,18 @@ namespace Fitness.BL.Controller
             return Load<Eating>(EATING_FILE_NAME) ?? new Eating(user);
         }
 
+        /// <summary>
+        /// Список продуктов.
+        /// </summary>
+        /// <returns></returns>
         private List<Food> GetAllFoods()
         {
             return Load<List<Food>>(FOOD_FILE_NAME) ?? new List<Food>();
         }
 
+        /// <summary>
+        /// Сохранить.
+        /// </summary>
         private void Save()
         {
             Save(FOOD_FILE_NAME, Foods);

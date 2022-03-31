@@ -49,7 +49,13 @@ namespace Fitness.BL.Controller
             }
         }
 
-
+        /// <summary>
+        /// Установить нового пользователя.
+        /// </summary>
+        /// <param name="genderName"> Пол.</param>
+        /// <param name="birthDay">Дата рождения.</param>
+        /// <param name="weight">Вес.</param>
+        /// <param name="height">Рост.</param>
         public void SetNewUserData(string genderName, DateTime birthDay,double weight=1, double height=1) //рост и вес добавили параметрами по умолчанию
         {
             CurrentUser.Gender = new Gender(genderName);

@@ -37,12 +37,19 @@ namespace Fitness.BL.Model
         /// Возраст.
         /// </summary>
         public int Age { get { return DateTime.Now.Year - BirthDay.Year; } }//переписать свойство
-        //DateTime nowData = DateTime.Today;
-        //int age = nowData.Year - birthdata.Year;
-        //if (birthdata> nowData.AddYears(-age)) age--;
+                                                                            //DateTime nowData = DateTime.Today;
+                                                                            //int age = nowData.Year - birthdata.Year;
+                                                                            //if (birthdata> nowData.AddYears(-age)) age--;
 
         #endregion
-        
+
+
+        public User()
+        {
+                
+        }
+
+
         /// <summary>
         /// Создать нового пользователя
         /// </summary>

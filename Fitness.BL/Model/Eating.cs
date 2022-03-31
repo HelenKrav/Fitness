@@ -12,8 +12,19 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Eating
     {
+        /// <summary>
+        /// Время приема пищи.
+        /// </summary>
         public DateTime MomentTime { get; }
+        
+        /// <summary>
+        /// Список продуктов и их вес.
+        /// </summary>
         public Dictionary<Food,double> Foods { get;  }
+        
+        /// <summary>
+        /// Пользователь.
+        /// </summary>
         public User User { get; }
 
 
@@ -29,8 +40,8 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Добавление продукта.
         /// </summary>
-        /// <param name="food"> наименование продукта.</param>
-        /// <param name="weight"> вес.</param>
+        /// <param name="food"> Наименование продукта.</param>
+        /// <param name="weight"> Вес.</param>
         public void Add(Food food, double weight)
         {
             var product = Foods.Keys.FirstOrDefault(f => f.NameFood.Equals(food.NameFood));
