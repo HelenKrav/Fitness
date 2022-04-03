@@ -30,7 +30,7 @@ namespace Fitness.CMD
 
             if (userController.IsNewUser)
             {
-                Console.WriteLine("EnterGender", culture); // Ведите пол
+                Console.WriteLine(resourceManager.GetString("EnterGender"), culture); // Ведите пол
                 var gender = Console.ReadLine();
 
                 var birthDay = ParseDateTime("дата рождения");
@@ -83,21 +83,7 @@ namespace Fitness.CMD
                         }
                 }
                 Console.ReadLine();
-            }
-
-
-            // старый вариант 
-            //if (key.Key == ConsoleKey.E) 
-            //{
-            //  var foods = EnterEating();
-            //  eatincontroller.Add(foods.Food, foods.Weight);
-              
-            //}
-            //foreach(var item in eatincontroller.Eating.Foods)
-            //{
-            //    Console.WriteLine($"\t {item.Key.NameFood} - {item.Value}");
-            //}
-            
+            }            
         }
 
         private static (DateTime Start, DateTime Finish, Activity Activity) EnterExercise()
@@ -136,7 +122,7 @@ namespace Fitness.CMD
             DateTime birthDay;
             while (true)
             {
-                Console.WriteLine($"Ведите {value} в формате dd.mm.yyyy hh:mm ");  
+                Console.WriteLine($"Ведите {value} в формате dd.mm.yyyy");  
                 if (DateTime.TryParse(Console.ReadLine(), out birthDay))
                 {
                     break;

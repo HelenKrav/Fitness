@@ -13,42 +13,22 @@ namespace Fitness.BL.Controller
     /// </summary>
     public abstract class BaseController   // базовый контроллер, от которого будут наследоваться другие
     {
-        /// <summary>
-        /// Сохранить.
-        /// </summary>
-        /// <typeparam name="T">Тип данных. </typeparam>
-        /// <param name="fileName"> Имя файла. </param>
-        /// <param name="item"> Наименование данных. </param>
-        public void Save<T>(string fileName, T item) // используем дженерик, так как методы используются для разных типов данных
+
+  //      protected readonly IDataSaver manager = new SerializeDataSaver();
+
+         protected readonly IDataSaver manager = new DataBaseSaver();
+
+        
+        public void Save<T>(List<T> item) where T: class 
         {
-            var formatter = new  BinaryFormatter();
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, item);
-            }
+            manager.Save(item);
         }
 
-
-        /// <summary>
-        /// Загрузить данные.
-        /// </summary>
-        /// <typeparam name="T"> Тип данных. </typeparam>
-        /// <param name="fileName"> Имя файла. </param>
-        /// <returns></returns>
-        public T Load<T>(string fileName)
+      
+        public List<T> Load<T>() where T : class
         {
-            var formatter = new  BinaryFormatter();
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is T items)
-                {
-                    return items;
-                }
-                else
-                {
-                    return default;
-                }
-            }
+            return manager.Load<T>();
+           
         }
 
 

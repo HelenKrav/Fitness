@@ -13,35 +13,43 @@ namespace Fitness.BL.Model
     public class User
     {
         #region Свойства
+        public int Id { get; set; }
+
         /// <summary>
         /// Имя.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
+
         /// <summary>
         /// Пол.
         /// </summary>
         public Gender Gender { get; set; }
+
        /// <summary>
        /// Дата рождения.
        /// </summary>
-        public DateTime BirthDay { get; set; }
+        public DateTime BirthDay { get; set; } = DateTime.Now;
+
         /// <summary>
         /// Вес.
         /// </summary>
         public double Weight { get; set; }
+
         /// <summary>
         /// Рост.
         /// </summary>
         public double Height { get; set; }
+
         /// <summary>
         /// Возраст.
         /// </summary>
         public int Age { get { return DateTime.Now.Year - BirthDay.Year; } }//переписать свойство
-                                                                            //DateTime nowData = DateTime.Today;
-                                                                            //int age = nowData.Year - birthdata.Year;
-                                                                            //if (birthdata> nowData.AddYears(-age)) age--;
+
+        public virtual ICollection<Eating> Eatings { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
 
         #endregion
+
 
 
         public User()

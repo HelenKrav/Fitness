@@ -14,8 +14,7 @@ namespace Fitness.BL.Controller
     /// </summary>
     public class EatingContoller :BaseController
     {
-        private const string FOOD_FILE_NAME = "foods.dat";
-        private const string EATING_FILE_NAME = "eating.dat";
+
         private readonly User user;
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace Fitness.BL.Controller
 
         private Eating GetEating()
         {
-            return Load<Eating>(EATING_FILE_NAME) ?? new Eating(user);
+            return Load<Eating>().FirstOrDefault() ?? new Eating(user);
         }
 
         /// <summary>
@@ -71,7 +70,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<Food> GetAllFoods()
         {
-            return Load<List<Food>>(FOOD_FILE_NAME) ?? new List<Food>();
+            return Load<Food>() ?? new List<Food>();
         }
 
         /// <summary>
@@ -79,8 +78,8 @@ namespace Fitness.BL.Controller
         /// </summary>
         private void Save()
         {
-            Save(FOOD_FILE_NAME, Foods);
-            Save(EATING_FILE_NAME, Eating);
+            Save(Foods);
+            Save(new List<Eating> { Eating});
         }
     }
 }

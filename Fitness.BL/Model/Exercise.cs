@@ -9,24 +9,38 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Exercise
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Начало упражнения.
         /// </summary>
-        public DateTime Start { get;  }
+        public DateTime Start { get; set; }
+
         /// <summary>
         /// Окончание активности.
         /// </summary>
-        public DateTime Finish { get;  }
+        public DateTime Finish { get; set; }
+
         /// <summary>
         /// Активность.
         /// </summary>
-        public Activity Activity { get;  }
+        public virtual Activity Activity { get; set; }        
+
+        public int ActivityId { get; set; }
+
+        public int UserId { get; set; }
+
         /// <summary>
         /// Текущий пользователь.
         /// </summary>
-        public User User { get;  }
-       
-        
+        public virtual User User { get; set; }
+
+
+        public Exercise()
+        {
+
+        }
+
         /// <summary>
         /// Упражнение.
         /// </summary>

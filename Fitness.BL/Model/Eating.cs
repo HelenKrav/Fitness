@@ -12,22 +12,30 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Eating
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Время приема пищи.
         /// </summary>
-        public DateTime MomentTime { get; }
+        public DateTime MomentTime { get; set; }
         
         /// <summary>
         /// Список продуктов и их вес.
         /// </summary>
-        public Dictionary<Food,double> Foods { get;  }
+        public Dictionary<Food,double> Foods { get; set; }
         
         /// <summary>
         /// Пользователь.
         /// </summary>
-        public User User { get; }
+        public virtual User User { get; set; }
+
+        public int UserId { get; set; }
 
 
+        public Eating()
+        {
+                
+        }
 
         public Eating(User user)
         {
@@ -35,7 +43,6 @@ namespace Fitness.BL.Model
             MomentTime = DateTime.Now; //UtcNow
             Foods = new Dictionary<Food,double>();
         }
-
 
         /// <summary>
         /// Добавление продукта.

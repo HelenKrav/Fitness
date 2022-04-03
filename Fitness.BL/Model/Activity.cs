@@ -9,16 +9,23 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Activity
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Название активности.
         /// </summary>
-        public string NameActivity { get;  }
+        public string NameActivity { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
 
         /// <summary>
         /// Количество калорий, сжигающих за минуту
         /// </summary>
-        public double CaloriesInMinute { get;  }
+        public double CaloriesInMinute { get; set; }
 
+        public Activity()
+        {
+                
+        }
 
         /// <summary>
         /// Активность.
@@ -29,9 +36,9 @@ namespace Fitness.BL.Model
         /// <exception cref="ArgumentNullException"></exception>
         public Activity(string nameActivity, double сaloriesInMinute)
         {
-            if (сaloriesInMinute<=0 || сaloriesInMinute > 100)
+            if (сaloriesInMinute < 0)
             {
-                throw new ArgumentException("Неверный диапазон, должен быть от {1:100}", nameof(сaloriesInMinute));
+                throw new ArgumentException("Неверный диапазон, должен быть отрицательным ", nameof(сaloriesInMinute));
             }
 
             NameActivity = nameActivity ?? throw new ArgumentNullException("Вид активности не может быть пустым", nameof(nameActivity));

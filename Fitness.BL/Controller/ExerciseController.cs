@@ -10,8 +10,6 @@ namespace Fitness.BL.Controller
     public class ExerciseController: BaseController
     {
         private readonly User user;
-        private const string  EXERCISES_FILE_NAME = "exercises.dat";
-        private const string ACTIVITY_FILE_NAME = "activities.dat";
 
         public List<Exercise> Exercises { get; }  //Ienumerable  //приватный список, а публичны уже ридонли
         public List<Activity> Activities { get; }
@@ -56,7 +54,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<Activity> GetAllActivities()
         {
-            return Load<List<Activity>>(EXERCISES_FILE_NAME) ?? new List<Activity>();
+            return Load<Activity>() ?? new List<Activity>();
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<Exercise> GetAllExercises()
         {
-            return Load<List<Exercise>>(EXERCISES_FILE_NAME) ?? new List<Exercise>();
+            return Load<Exercise>() ?? new List<Exercise>();
         }
 
         /// <summary>
@@ -73,8 +71,8 @@ namespace Fitness.BL.Controller
         /// </summary>
         private void Save()
         {
-            Save(EXERCISES_FILE_NAME, Exercises);
-            Save(ACTIVITY_FILE_NAME, Activities);
+            Save(Exercises);
+            Save(Activities);
         }
     }
 }
