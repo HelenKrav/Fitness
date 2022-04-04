@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fitness.BL.Model
 {
@@ -18,15 +19,17 @@ namespace Fitness.BL.Model
         /// Время приема пищи.
         /// </summary>
         public DateTime MomentTime { get; set; }
-        
+
         /// <summary>
         /// Список продуктов и их вес.
         /// </summary>
+        [XmlIgnoreAttribute]
         public Dictionary<Food,double> Foods { get; set; }
-        
+
         /// <summary>
         /// Пользователь.
         /// </summary>
+        [XmlIgnoreAttribute]
         public virtual User User { get; set; }
 
         public int UserId { get; set; }

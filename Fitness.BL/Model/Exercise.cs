@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fitness.BL.Model
 {
@@ -24,6 +25,7 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Активность.
         /// </summary>
+        [XmlIgnoreAttribute]
         public virtual Activity Activity { get; set; }        
 
         public int ActivityId { get; set; }
@@ -33,6 +35,7 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Текущий пользователь.
         /// </summary>
+        [XmlIgnoreAttribute]
         public virtual User User { get; set; }
 
 

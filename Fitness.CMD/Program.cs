@@ -119,11 +119,11 @@ namespace Fitness.CMD
 
         private static DateTime ParseDateTime(string value)
         {
-            DateTime birthDay;
+            DateTime _dateTime;
             while (true)
             {
                 Console.WriteLine($"Ведите {value} в формате dd.mm.yyyy");  
-                if (DateTime.TryParse(Console.ReadLine(), out birthDay))
+                if (DateTime.TryParse(Console.ReadLine(), out  _dateTime))
                 {
                     break;
                 }
@@ -132,7 +132,7 @@ namespace Fitness.CMD
                     Console.WriteLine($"Неверный формат {value}!");
                 }
             }
-            return birthDay;
+            return _dateTime;
         }
 
 

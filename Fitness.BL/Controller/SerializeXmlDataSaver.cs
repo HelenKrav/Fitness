@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fitness.BL.Controller
 {
-    public class SerializeDataSaver : IDataSaver
+    public class SerializeXmlDataSaver: IDataSaver
     {
-
         public List<T> Load<T>() where T : class
         {
-            var formatter = new BinaryFormatter();
-            var fileName =typeof(T).Name;
+            var formatter = new XmlSerializer(typeof(T));
+            var fileName = typeof(T).Name;
 
             using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
@@ -29,9 +28,9 @@ namespace Fitness.BL.Controller
             }
         }
 
-        public void Save<T>(List<T> item) where T: class
-        { 
-            var formatter = new BinaryFormatter();
+        public void Save<T>(List<T> item) where T : class
+        {
+            var formatter = new XmlSerializer(typeof(List<T>));
             var fileName = typeof(T).Name;
 
             using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))

@@ -14,11 +14,13 @@ namespace Fitness.BL.Controller
     public abstract class BaseController   // базовый контроллер, от которого будут наследоваться другие
     {
 
-  //      protected readonly IDataSaver manager = new SerializeDataSaver();
+        protected readonly IDataSaver manager = new DataBaseSaver(); 
+        //new SerializeBinaryDataSaver();
+        //new DataBaseSaver();
+        //new SerializeXmlDataSaver();
 
-         protected readonly IDataSaver manager = new DataBaseSaver();
 
-        
+
         public void Save<T>(List<T> item) where T: class 
         {
             manager.Save(item);

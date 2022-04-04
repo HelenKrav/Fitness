@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fitness.BL.Model
 {
@@ -45,7 +46,9 @@ namespace Fitness.BL.Model
         /// </summary>
         public int Age { get { return DateTime.Now.Year - BirthDay.Year; } }//переписать свойство
 
+        [XmlIgnoreAttribute]
         public virtual ICollection<Eating> Eatings { get; set; }
+        [XmlIgnoreAttribute]
         public virtual ICollection<Exercise> Exercises { get; set; }
 
         #endregion
