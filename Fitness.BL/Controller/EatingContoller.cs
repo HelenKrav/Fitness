@@ -12,7 +12,7 @@ namespace Fitness.BL.Controller
     /// <summary>
     /// Контроллер справочника еды
     /// </summary>
-    public class EatingContoller :BaseController
+    public class EatingContoller :BaseSQLController
     {
 
         private readonly User user;
@@ -42,20 +42,22 @@ namespace Fitness.BL.Controller
         /// </summary>
         /// <param name="food"> Продукт. </param>
         /// <param name="weight"> Вес. </param>
-        public void Add(Food food , double weight)
+        public void AddFood(Food food , double weight)
         {
             var product = Foods.SingleOrDefault(f => f.NameFood == food.NameFood);
             if(product == null)
             {
                 Foods.Add(food);
-                Eating.Add(food, weight);
-                Save();
+                SaveFood();
+                Eating.AddEating(food, weight);
+                Eating.FoodId = food.Id;
+                SaveEating();
 
             }
             else 
             { 
-                Eating.Add(product, weight);
-                Save();
+                Eating.AddEating(product, weight);
+                SaveEating();
             }
         }
 
@@ -76,10 +78,14 @@ namespace Fitness.BL.Controller
         /// <summary>
         /// Сохранить.
         /// </summary>
-        private void Save()
+        private void SaveFood()
         {
-            Save(Foods);
-            Save(new List<Eating> { Eating});
+            Save(Foods.LastOrDefault());
+        }
+
+        private void SaveEating()
+        {
+            Save(Eating); //new List<Eating> { Eating }
         }
     }
 }

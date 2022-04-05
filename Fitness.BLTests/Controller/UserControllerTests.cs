@@ -13,51 +13,31 @@ namespace Fitness.BL.Controller.Tests   //делаем проект тестов
     [TestClass()]
     public class UserControllerTests
     {
-        [TestMethod()]
-        public void UserControllerTest()  //в принципе не нужен тест конструктора по умолчанию
-        {
-            int a = 5;
-            int b= 2;
-            //arrange
-
-            //act
-            int c = a / b;
-
-            //assert
-
-            Assert.AreEqual(2,c);
-        }
 
         [TestMethod()]
         public void SetNewUserDataTest()
         {
+            //arrange
             var userName = Guid.NewGuid().ToString();
-            var gender = "man";
-            var birthDay = DateTime.Now.AddYears(-18);
-            var weight = 80d;
-            var height = 160d;
 
             var controller = new UserController(userName);
-            controller.SetNewUserData(gender, birthDay, weight, height);
 
-            var controller2 = new UserController(userName);
-            
-            Assert.AreEqual(userName, controller2.CurrentUser.Name);
-            Assert.AreEqual(gender, controller2.CurrentUser.Gender.Name);
-            Assert.AreEqual(birthDay, controller2.CurrentUser.BirthDay);
-            Assert.AreEqual(weight, controller2.CurrentUser.Weight);
-            Assert.AreEqual(height, controller2.CurrentUser.Height);
+            var gender = "womanaswamp";
+            var birthDay = DateTime.Now.AddYears(-18);
+            var weight = 50d;
+            var height = 160d;
+
+
+            //act 
+            controller.SetNewUserData(gender, birthDay, weight, height);
+ 
+
+            //assert
+            Assert.IsNotNull(controller.CurrentUser.Name);
+
                     
         }
 
-        [TestMethod()]
-        public void SaveTest()
-        {
-            var userName = Guid.NewGuid().ToString();
-            
-            var controller = new UserController(userName);
-            
-            Assert.AreEqual(userName, controller.CurrentUser.Name); 
-        }
+        
     }
 }

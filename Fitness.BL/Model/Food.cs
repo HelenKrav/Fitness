@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fitness.BL.Model
 {
@@ -34,8 +35,10 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Калории.
         /// </summary>
-        public double Calories { get; set; }
+        public double Callories { get; set; }
 
+        [XmlIgnoreAttribute]
+        public virtual ICollection<Eating> Eatings { get; set; }
 
         public Food()
         {
@@ -66,11 +69,16 @@ namespace Fitness.BL.Model
                 throw new ArgumentException("Углеводы не могут быть отрицательным значением", nameof(carbs));
             }
             NameFood = nameFood ?? throw new ArgumentNullException("Наименование продукта не может быть пустым", nameof(nameFood));
-            Calories = calories / 100d;
-            Proteins = proteins / 100d;
-            Fats = fats / 100d;
-            Carbs = carbs / 100d;
+            Callories = calories;
+            Proteins = proteins;
+            Fats = fats;
+            Carbs = carbs;
 
+        }
+
+        public override string ToString()
+        {
+            return NameFood;
         }
     }
 }

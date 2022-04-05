@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fitness.BL.Model
 {
@@ -18,6 +19,9 @@ namespace Fitness.BL.Model
         /// Название.
         /// </summary>
         public string Name { get; set; }
+
+        [XmlIgnoreAttribute]
+        public virtual ICollection<User> Users { get; set; }
 
         public Gender()
         {
@@ -35,9 +39,11 @@ namespace Fitness.BL.Model
             {
                 throw new ArgumentNullException("Имя пола не может быть пустым или пустым", nameof(name));
             }
+
             Name = name;
 
         }
+
 
         public override string ToString()
         {

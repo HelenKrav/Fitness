@@ -22,7 +22,7 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Количество калорий, сжигающих за минуту
         /// </summary>
-        public double CaloriesInMinute { get; set; }
+        public double CalloriesInMinute { get; set; }
 
         public Activity()
         {
@@ -44,7 +44,7 @@ namespace Fitness.BL.Model
             }
 
             NameActivity = nameActivity ?? throw new ArgumentNullException("Вид активности не может быть пустым", nameof(nameActivity));
-            CaloriesInMinute = сaloriesInMinute;
+            CalloriesInMinute = сaloriesInMinute;
         }
 
         public override string ToString()

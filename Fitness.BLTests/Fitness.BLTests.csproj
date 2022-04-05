@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Controller\EatingContollerTests.cs" />
     <Compile Include="Controller\ExerciseControllerTests.cs" />
+    <Compile Include="Controller\GenderControllerTests.cs" />
     <Compile Include="Controller\UserControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

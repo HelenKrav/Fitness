@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fitness.BL.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,16 +15,16 @@ namespace Fitness.BL.Controller
     public abstract class BaseController   // базовый контроллер, от которого будут наследоваться другие
     {
 
-        protected readonly IDataSaver manager = new DataBaseSaver(); 
+        protected readonly IDataSaver manager = new DataBaseSaver();
         //new SerializeBinaryDataSaver();
         //new DataBaseSaver();
         //new SerializeXmlDataSaver();
 
 
 
-        public void Save<T>(List<T> item) where T: class 
+        public void Save<T>(T item) where T: class 
         {
-            manager.Save(item);
+           // manager.Save(item);
         }
 
       

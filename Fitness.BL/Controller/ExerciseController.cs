@@ -2,12 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Fitness.BL.Controller
 {
-    public class ExerciseController: BaseController
+    public class ExerciseController: BaseSQLController
     {
         private readonly User user;
 
@@ -71,8 +70,8 @@ namespace Fitness.BL.Controller
         /// </summary>
         private void Save()
         {
-            Save(Exercises);
-            Save(Activities);
+            Save(Exercises.LastOrDefault());
+            Save(Activities.LastOrDefault());
         }
     }
 }

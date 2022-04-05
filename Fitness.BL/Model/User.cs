@@ -21,14 +21,18 @@ namespace Fitness.BL.Model
         /// </summary>
         public string Name { get; set; }
 
+
+        public int? GenderId { get; set; }
+
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; set; }
+        [XmlIgnoreAttribute]
+        public virtual Gender Gender { get; set; }
 
-       /// <summary>
-       /// Дата рождения.
-       /// </summary>
+        /// <summary>
+        /// Дата рождения.
+        /// </summary>
         public DateTime BirthDay { get; set; } = DateTime.Now;
 
         /// <summary>

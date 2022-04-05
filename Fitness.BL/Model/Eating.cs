@@ -26,6 +26,8 @@ namespace Fitness.BL.Model
         [XmlIgnoreAttribute]
         public Dictionary<Food,double> Foods { get; set; }
 
+
+
         /// <summary>
         /// Пользователь.
         /// </summary>
@@ -34,6 +36,10 @@ namespace Fitness.BL.Model
 
         public int UserId { get; set; }
 
+        public int FoodId { get; set; }
+
+        [XmlIgnoreAttribute]
+        public virtual Food Food { get; set; }
 
         public Eating()
         {
@@ -52,7 +58,7 @@ namespace Fitness.BL.Model
         /// </summary>
         /// <param name="food"> Наименование продукта.</param>
         /// <param name="weight"> Вес.</param>
-        public void Add(Food food, double weight)
+        public void AddEating(Food food, double weight)
         {
             var product = Foods.Keys.FirstOrDefault(f => f.NameFood.Equals(food.NameFood));
             if (product == null)

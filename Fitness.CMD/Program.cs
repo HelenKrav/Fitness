@@ -25,14 +25,11 @@ namespace Fitness.CMD
             var name = Console.ReadLine(); 
 
             var userController = new UserController(name);
-            var eatinController = new EatingContoller(userController.CurrentUser);
-            var exerciseController = new ExerciseController(userController.CurrentUser);
 
             if (userController.IsNewUser)
             {
                 Console.WriteLine(resourceManager.GetString("EnterGender"), culture); // Ведите пол
                 var gender = Console.ReadLine();
-
                 var birthDay = ParseDateTime("дата рождения");
                 var weight = ParseDouble("вес");
                 var height = ParseDouble("рост");
@@ -42,7 +39,8 @@ namespace Fitness.CMD
 
             Console.WriteLine(userController.CurrentUser);
 
-
+            var eatingController = new EatingContoller(userController.CurrentUser);
+            var exerciseController = new ExerciseController(userController.CurrentUser);
 
             while (true)
             {
@@ -58,8 +56,8 @@ namespace Fitness.CMD
                     case ConsoleKey.E:
                         {
                             var foods = EnterEating();
-                            eatinController.Add(foods.Food, foods.Weight);
-                            foreach (var item in eatinController.Eating.Foods)
+                            eatingController.Add(foods.Food, foods.Weight);
+                            foreach (var item in eatingController.Eating.Foods)
                             {
                                 Console.WriteLine($"\t {item.Key.NameFood} - {item.Value}");
                             }
@@ -105,13 +103,13 @@ namespace Fitness.CMD
             Console.WriteLine("Введите имя продукта: ");
             var food = Console.ReadLine();
 
-            var calories = ParseDouble("калорийность");
+            var callories = ParseDouble("калорийность");
             var proteins = ParseDouble("белки");
             var fats = ParseDouble("жиры");
             var carbs = ParseDouble("углеводы");
             var weight = ParseDouble("вес порции");
 
-            var product = new Food(food,calories,proteins,fats,carbs);
+            var product = new Food(food,callories,proteins,fats,carbs);
 
             return (Food: product,Weight: weight);
 

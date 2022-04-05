@@ -13,7 +13,7 @@ namespace Fitness.BL.Controller.Tests
     public class EatingContollerTests
     {
         [TestMethod()]
-        public void AddTest()
+        public void AddFoodTest()
         {
             var userName = Guid.NewGuid().ToString();
             var foodName = Guid.NewGuid().ToString();
@@ -23,7 +23,7 @@ namespace Fitness.BL.Controller.Tests
             var food = new Food(foodName, rnd.Next(50,500), rnd.Next(50, 500), rnd.Next(50, 500), rnd.Next(50, 500));
 
 
-            eatingController.Add(food, 100);
+            eatingController.AddFood(food, 100);
 
            
             Assert.AreEqual(food.NameFood, eatingController.Eating.Foods.Last().Key.NameFood);
