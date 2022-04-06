@@ -27,7 +27,7 @@ namespace Fitness.BL.Controller
         /// <param name="activity"></param>
         /// <param name="start"></param>
         /// <param name="finish"></param>
-        public void Add(Activity activity, DateTime start, DateTime finish)   // 3 перегрузки (2- старт и длительность) 3- продолжительность  от момента ввода
+        public void AddExercise(Activity activity, DateTime start, DateTime finish)   // 3 перегрузки (2- старт и длительность) 3- продолжительность  от момента ввода
         {
             var act = Activities.SingleOrDefault(a=>a.NameActivity == activity.NameActivity);
             if (act == null)
@@ -35,15 +35,13 @@ namespace Fitness.BL.Controller
                 Activities.Add(activity);
                 var exercise = new Exercise(start, finish, activity, user);
                 Exercises.Add(exercise);
-
-                Save();
             }
             else
             {
                 var exercise = new Exercise(start, finish, act, user);
                 Exercises.Add(exercise);
             }
-            Save();
+            SaveExercise();
 
         }
 
@@ -68,7 +66,7 @@ namespace Fitness.BL.Controller
         /// <summary>
         /// Сохранить.
         /// </summary>
-        private void Save()
+        private void SaveExercise()
         {
             Save(Exercises.LastOrDefault());
             Save(Activities.LastOrDefault());

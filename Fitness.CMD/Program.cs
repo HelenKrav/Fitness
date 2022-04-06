@@ -56,7 +56,7 @@ namespace Fitness.CMD
                     case ConsoleKey.E:
                         {
                             var foods = EnterEating();
-                            eatingController.Add(foods.Food, foods.Weight);
+                            eatingController.AddFood(foods.Food, foods.Weight);
                             foreach (var item in eatingController.Eating.Foods)
                             {
                                 Console.WriteLine($"\t {item.Key.NameFood} - {item.Value}");
@@ -66,7 +66,7 @@ namespace Fitness.CMD
                     case ConsoleKey.A:
                         {
                             var ex = EnterExercise();
-                            exerciseController.Add(ex.Activity, ex.Start, ex.Finish);
+                            exerciseController.AddExercise(ex.Activity, ex.Start, ex.Finish);
                             foreach (var item in exerciseController.Exercises)
                             {
                                 Console.WriteLine($"\t{item.Activity} c {item.Start.ToShortTimeString()} до {item.Finish.ToShortTimeString()}");

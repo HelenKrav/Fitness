@@ -13,7 +13,7 @@ namespace Fitness.BL.Controller.Tests
     public class ExerciseControllerTests
     {
         [TestMethod()]
-        public void AddTest()
+        public void AddExerciseTest()
         {
             var userName = Guid.NewGuid().ToString();
             var activityName = Guid.NewGuid().ToString();
@@ -25,10 +25,9 @@ namespace Fitness.BL.Controller.Tests
             var activity = new Activity(activityName, rnd.Next(100));
 
 
-            exerciseController.Add(activity,start,finish);
+            exerciseController.AddExercise(activity,start,finish);
 
-
-            Assert.AreEqual(activity.NameActivity, exerciseController.Activities.First().NameActivity);
+            Assert.AreEqual(activity.NameActivity, exerciseController.Activities.Last().NameActivity);
         }
     }
 }
